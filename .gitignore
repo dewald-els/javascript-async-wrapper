@@ -1,0 +1,11 @@
+# IDE
+.vscode
+.idea
+
+# Deps
+node_modules
+
+# Hidden
+.DS_STORE
+thumbs.db
+*.log
