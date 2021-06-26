@@ -1,10 +1,9 @@
-export const fetchAsync = (params = null) => async fetchRequest => {
+export const asyncWrapper = async (asyncFunction, params = null) => {
 	try {
-		const data = await fetchRequest(params)
+		const data = await asyncFunction(params)
 		return [data, null]
 	}
 	catch (error) {
-		return [null, error]
+		return [ null, error ]
 	}
 }
-

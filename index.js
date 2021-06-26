@@ -1,4 +1,6 @@
-import { fetchAsync } from './async-wrapper.js'
+// @ts-check
+
+import { asyncWrapper } from './async-wrapper.js'
 import {
 	fetchUsersRequest,
 	fetchTodosRequest,
@@ -10,10 +12,10 @@ import { mockUser } from './mockUser.js'
 // Use them all together! <3 
 const handleFetchAllClick = async () => {
 	// No gross try/catch everywhere
-	const [users, usersError] = await fetchAsync()(fetchUsersRequest)
-	const [todos, todosError] = await fetchAsync()(fetchTodosRequest)
-	const [user, userError] = await fetchAsync(1)(fetchUserByIdRequest)
-	const [newUser, newUserError] = await fetchAsync(mockUser)(createUsersRequest)
+	const [users, usersError] = await asyncWrapper(fetchUsersRequest)
+	const [todos, todosError] = await asyncWrapper(fetchTodosRequest)
+	const [user, userError] = await asyncWrapper(fetchUserByIdRequest, 1)
+	const [newUser, newUserError] = await asyncWrapper(createUsersRequest, mockUser)
 }
 
 const fetchAllButton = document.getElementById('fetch-all')
